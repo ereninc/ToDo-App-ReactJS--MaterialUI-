@@ -6,7 +6,7 @@ export default function TodoForm(props) {
   const [value, handleChange, reset] = useInputState("");
 
   return (
-    <Paper>
+    <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -14,7 +14,13 @@ export default function TodoForm(props) {
           reset();
         }}
       >
-        <TextField value={value || []} onChange={handleChange} />
+        <TextField
+          value={value || []}
+          onChange={handleChange}
+          margin="normal"
+          label="Add New Todo"
+          fullWidth
+        />
       </form>
     </Paper>
   );
