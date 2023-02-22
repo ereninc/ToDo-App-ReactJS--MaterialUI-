@@ -12,13 +12,14 @@ export default function EditTodoForm({ id, currentTask, editTodo }) {
         editTodo(id, value);
         reset();
       }}
-      style={{ display: "flex" }}
+      style={{ display: "flex", width: "70%" }}
     >
       <TextField
         label={currentTask}
         margin="normal"
         onChange={handleChange}
         fullWidth
+        autoFocus
       />
       <Button
         variant="contained"

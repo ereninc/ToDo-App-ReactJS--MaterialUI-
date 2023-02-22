@@ -27,7 +27,7 @@ export default function TodoItem({
 
   return (
     <ListItem
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", height: "96px" }}
       onClick={() => {
         isEditing || toggleTodo(id);
       }}
