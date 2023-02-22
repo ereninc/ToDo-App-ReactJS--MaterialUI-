@@ -8,6 +8,8 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
+import useToggle from "../../../hooks/useToggle";
+import EditTodoForm from "./EditTodoForm";
 
 export default function TodoItem({
   task,
@@ -16,19 +18,31 @@ export default function TodoItem({
   id,
   toggleTodo,
 }) {
+  const [isEditing, toggleIsEditing] = useToggle(false);
+
+  const handleEdit = () => {
+    toggleIsEditing();
+  };
+
   return (
     <ListItem
       style={{ cursor: "pointer" }}
       onClick={() => {
-        toggleTodo(id);
+        isEditing || toggleTodo(id);
       }}
     >
-      <Checkbox tabIndex={-1} checked={completed} />
-      <ListItemText
-        style={{ textDecoration: completed ? "line-through" : "none" }}
-      >
-        <span>{task}</span>
-      </ListItemText>
+      {isEditing ? (
+        <EditTodoForm currentTask={task} />
+      ) : (
+        <>
+          <Checkbox tabIndex={-1} checked={completed} />
+          <ListItemText
+            style={{ textDecoration: completed ? "line-through" : "none" }}
+          >
+            <span>{task}</span>
+          </ListItemText>
+        </>
+      )}
 
       <ListItemSecondaryAction>
         <IconButton
@@ -39,7 +53,7 @@ export default function TodoItem({
         >
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="Edit">
+        <IconButton aria-label="Edit" onClick={handleEdit}>
           <EditIcon />
         </IconButton>
       </ListItemSecondaryAction>
