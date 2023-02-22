@@ -17,6 +17,7 @@ export default function TodoItem({
   removeTodo,
   id,
   toggleTodo,
+  editTodo,
 }) {
   const [isEditing, toggleIsEditing] = useToggle(false);
 
@@ -32,7 +33,7 @@ export default function TodoItem({
       }}
     >
       {isEditing ? (
-        <EditTodoForm currentTask={task} />
+        <EditTodoForm id={id} currentTask={task} editTodo={editTodo} />
       ) : (
         <>
           <Checkbox tabIndex={-1} checked={completed} />

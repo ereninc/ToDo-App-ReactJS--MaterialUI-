@@ -2,17 +2,23 @@ import { TextField } from "@mui/material";
 import React from "react";
 import useInputState from "../../../hooks/useInputState";
 
-export default function EditTodoForm(props) {
-  const [value, handleChange, reset] = useInputState(props.currentTask);
+export default function EditTodoForm({ id, currentTask, editTodo }) {
+  const [value, handleChange, reset] = useInputState(currentTask);
 
   return (
-    <div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        editTodo(id, value);
+        reset();
+      }}
+    >
       <TextField
-        label={props.currentTask}
+        label={currentTask}
         margin="normal"
         onChange={handleChange}
         fullWidth
       />
-    </div>
+    </form>
   );
 }
