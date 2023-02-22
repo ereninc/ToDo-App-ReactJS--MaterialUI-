@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
 
-export default function TodoItem({ task, completed }) {
+export default function TodoItem({ task, completed, removeTodo, id }) {
   return (
     <ListItem>
       <Checkbox tabIndex={-1} checked={completed} />
@@ -20,7 +20,12 @@ export default function TodoItem({ task, completed }) {
       </ListItemText>
 
       <ListItemSecondaryAction>
-        <IconButton aria-label="Delete">
+        <IconButton
+          aria-label="Delete"
+          onClick={() => {
+            removeTodo(id);
+          }}
+        >
           <DeleteIcon />
         </IconButton>
         <IconButton aria-label="Edit">

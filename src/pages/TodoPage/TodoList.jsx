@@ -9,7 +9,12 @@ export default function TodoList(props) {
       <List>
         {props.todos.map((todo) => (
           <div key={uuidv4()}>
-            <TodoItem task={todo.task} completed={todo.completed} />
+            <TodoItem
+              id={todo.id}
+              task={todo.task}
+              completed={todo.completed}
+              removeTodo={props.removeTodo}
+            />
             <Divider />
           </div>
         ))}
