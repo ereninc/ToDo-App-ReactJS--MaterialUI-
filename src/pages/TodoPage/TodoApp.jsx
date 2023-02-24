@@ -10,7 +10,6 @@ export default function TodoApp() {
     useTodoState(initialTodos);
 
   useEffect(() => {
-    console.log("useEffect working");
     window.localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
